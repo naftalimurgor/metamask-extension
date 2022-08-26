@@ -45,10 +45,9 @@ export default function ConfirmSendToken({
     dispatch(showSendTokenPage());
   };
 
-  const handleEdit = (confirmTransactionData) => {
-    handleEditTransaction(confirmTransactionData).then(() => {
-      history.push(SEND_ROUTE);
-    });
+  const handleEdit = async (confirmTransactionData) => {
+    await handleEditTransaction(confirmTransactionData);
+    history.push(SEND_ROUTE);
   };
   const conversionRate = useSelector(getConversionRate);
   const nativeCurrency = useSelector(getNativeCurrency);

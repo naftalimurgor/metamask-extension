@@ -862,7 +862,7 @@ export default class ConfirmTransactionBase extends Component {
     });
   }
 
-  handleCancel() {
+  async handleCancel() {
     const {
       txData,
       cancelTransaction,
@@ -874,10 +874,9 @@ export default class ConfirmTransactionBase extends Component {
 
     this._removeBeforeUnload();
     updateCustomNonce('');
-    cancelTransaction(txData).then(() => {
-      clearConfirmTransaction();
-      history.push(mostRecentOverviewPage);
-    });
+    await cancelTransaction(txData);
+    clearConfirmTransaction();
+    history.push(mostRecentOverviewPage);
   }
 
   handleSubmit() {
