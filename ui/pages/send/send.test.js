@@ -108,6 +108,7 @@ const baseStore = {
     addressBook: {
       [CHAIN_IDS.GOERLI]: [],
     },
+    currentNetworkTxList: [],
     cachedBalances: {
       [CHAIN_IDS.GOERLI]: {},
     },
