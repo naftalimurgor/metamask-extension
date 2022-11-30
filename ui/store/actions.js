@@ -3788,20 +3788,6 @@ export function setCollectiblesDetectionNoticeDismissed() {
   ]);
 }
 
-export function setImprovedTokenAllowanceEnabled(
-  improvedTokenAllowanceEnabled,
-) {
-  return async () => {
-    try {
-      await submitRequestToBackground('setImprovedTokenAllowanceEnabled', [
-        improvedTokenAllowanceEnabled,
-      ]);
-    } catch (error) {
-      log.error(error);
-    }
-  };
-}
-
 export function setTransactionSecurityCheckEnabled(
   transactionSecurityCheckEnabled,
 ) {
