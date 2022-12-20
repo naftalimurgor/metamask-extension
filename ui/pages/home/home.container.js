@@ -17,6 +17,7 @@ import {
   getShowWhatsNewPopup,
   getSortedAnnouncementsToShow,
   getShowRecoveryPhraseReminder,
+  getShowOutdatedBrowserWarning,
   getNewNetworkAdded,
   hasUnsignedQRHardwareTransaction,
   hasUnsignedQRHardwareMessage,
@@ -35,6 +36,7 @@ import {
   setAlertEnabledness,
   setRecoveryPhraseReminderHasBeenShown,
   setRecoveryPhraseReminderLastShown,
+  setOutdatedBrowserWarningLastShown,
   setNewNetworkAdded,
   setNewCollectibleAddedMessage,
   setNewTokensImported,
@@ -141,6 +143,7 @@ const mapStateToProps = (state) => {
     portfolioTooltipWasShownInThisSession:
       getPortfolioTooltipWasShownInThisSession(state),
     showRecoveryPhraseReminder: getShowRecoveryPhraseReminder(state),
+    showOutdatedBrowserWarning: getShowOutdatedBrowserWarning(state),
     seedPhraseBackedUp,
     newNetworkAdded: getNewNetworkAdded(state),
     isSigningQRHardwareTransaction,
@@ -169,6 +172,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setRecoveryPhraseReminderHasBeenShown()),
   setRecoveryPhraseReminderLastShown: (lastShown) =>
     dispatch(setRecoveryPhraseReminderLastShown(lastShown)),
+  setOutdatedBrowserWarningLastShown: (lastShown) => {
+    dispatch(setOutdatedBrowserWarningLastShown(lastShown));
+  },
   setNewNetworkAdded: (newNetwork) => {
     dispatch(setNewNetworkAdded(newNetwork));
   },

@@ -118,6 +118,8 @@ export default class Home extends PureComponent {
     showRecoveryPhraseReminder: PropTypes.bool.isRequired,
     setRecoveryPhraseReminderHasBeenShown: PropTypes.func.isRequired,
     setRecoveryPhraseReminderLastShown: PropTypes.func.isRequired,
+    showOutdatedBrowserWarning: PropTypes.bool.isRequired,
+    setOutdatedBrowserWarningLastShown: PropTypes.func.isRequired,
     seedPhraseBackedUp: (props) => {
       if (
         props.seedPhraseBackedUp !== null &&
@@ -243,6 +245,11 @@ export default class Home extends PureComponent {
     setRecoveryPhraseReminderLastShown(new Date().getTime());
   };
 
+  onOutdatedBrowserWarningClose = () => {
+    const { setOutdatedBrowserWarningLastShown } = this.props;
+    setOutdatedBrowserWarningLastShown(new Date().getTime());
+  };
+
   renderNotifications() {
     const { t } = this.context;
     const {
@@ -259,6 +266,7 @@ export default class Home extends PureComponent {
       shouldShowErrors,
       ///: END:ONLY_INCLUDE_IN
       infuraBlocked,
+      showOutdatedBrowserWarning,
       newNetworkAdded,
       setNewNetworkAdded,
       newCollectibleAddedMessage,
@@ -445,6 +453,21 @@ export default class Home extends PureComponent {
               });
             }}
             key="home-infuraBlockedNotification"
+          />
+        ) : null}
+        {showOutdatedBrowserWarning ? (
+          <HomeNotification
+            descriptionText={t('outdatedBrowserNotification', [
+              <span
+                key="outdatedBrowserNotificationLink"
+                className="home-notification__text-link"
+              >
+                {t('here')}
+              </span>,
+            ])}
+            acceptText={t('gotIt')}
+            onAccept={this.onOutdatedBrowserWarningClose}
+            key="home-outdatedBrowserNotification"
           />
         ) : null}
         {Object.keys(newCustomNetworkAdded).length !== 0 && (
