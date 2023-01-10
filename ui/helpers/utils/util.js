@@ -329,7 +329,9 @@ export function getURL(url) {
   }
 }
 
-export function getOutdatedBrowserStatus(browser = bowser.getParser(window.navigator.userAgent)) {
+export function getOutdatedBrowserStatus(
+  browser = bowser.getParser(window.navigator.userAgent),
+) {
   return browser.satisfies(OUTDATED_BROWSER_VERSIONS);
 }
 
