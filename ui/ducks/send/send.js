@@ -4,10 +4,8 @@ import { addHexPrefix } from 'ethereumjs-util';
 import { debounce } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import {
-  conversionGreaterThan,
-  conversionUtil,
-  multiplyCurrencies,
-  subtractCurrencies,
+  decimalToHex,
+  getValueFromWeiHex,
 } from '../../../shared/modules/conversion.utils';
 import { GAS_ESTIMATE_TYPES, GAS_LIMITS } from '../../../shared/constants/gas';
 import {
@@ -89,10 +87,7 @@ import {
   isValidHexAddress,
   toChecksumHexAddress,
 } from '../../../shared/modules/hexstring-utils';
-import {
-  isSmartContractAddress,
-  sumHexes,
-} from '../../helpers/utils/transactions.util';
+import { isSmartContractAddress } from '../../helpers/utils/transactions.util';
 import fetchEstimatedL1Fee from '../../helpers/utils/optimism/fetchEstimatedL1Fee';
 
 import { ETH } from '../../helpers/constants/common';
@@ -104,13 +99,13 @@ import {
 } from '../../../shared/constants/transaction';
 import { INVALID_ASSET_TYPE } from '../../helpers/constants/error-keys';
 import { isEqualCaseInsensitive } from '../../../shared/modules/string-utils';
-import { getValueFromWeiHex } from '../../helpers/utils/confirm-tx.util';
 import { parseStandardTokenTransactionData } from '../../../shared/modules/transaction.utils';
 import { getTokenValueParam } from '../../../shared/lib/metamask-controller-utils';
 import {
   calcGasTotal,
   calcTokenAmount,
 } from '../../../shared/lib/transactions-controller-utils';
+import { Numeric } from '../../../shared/modules/Numeric';
 import {
   estimateGasLimitForSend,
   generateTransactionParams,
@@ -904,31 +899,19 @@ const slice = createSlice({
       let amount = '0x0';
       if (draftTransaction.asset.type === AssetType.token) {
         const decimals = draftTransaction.asset.details?.decimals ?? 0;
-        const multiplier = Math.pow(10, Number(decimals));
 
-        amount = multiplyCurrencies(
-          draftTransaction.asset.balance,
-          multiplier,
-          {
-            toNumericBase: 'hex',
-            multiplicandBase: 16,
-            multiplierBase: 10,
-          },
-        );
+        amount = new Numeric(draftTransaction.asset.balance, 16)
+          .shiftedBy(decimals)
+          .toString();
       } else {
-        const _gasTotal = sumHexes(
+        const _gasTotal = new Numeric(
           draftTransaction.gas.gasTotal || '0x0',
-          state.gasTotalForLayer1 || '0x0',
-        );
-        amount = subtractCurrencies(
-          addHexPrefix(draftTransaction.asset.balance),
-          addHexPrefix(_gasTotal),
-          {
-            toNumericBase: 'hex',
-            aBase: 16,
-            bBase: 16,
-          },
-        );
+          16,
+        ).add(new Numeric(state.gasTotalForLayer1 || '0x0', 16));
+
+        amount = new Numeric(draftTransaction.asset.balance, 16)
+          .minus(_gasTotal)
+          .toString();
       }
       slice.caseReducers.updateSendAmount(state, {
         payload: amount,
@@ -1268,6 +1251,9 @@ const slice = createSlice({
     validateAmountField: (state) => {
       const draftTransaction =
         state.draftTransactions[state.currentTransactionUUID];
+
+      const amountValue = new Numeric(draftTransaction.amount.value, 16);
+
       switch (true) {
         // set error to INSUFFICIENT_FUNDS_FOR_GAS_ERROR if the account balance is lower
         // than the total price of the transaction inclusive of gas fees.
@@ -1291,10 +1277,7 @@ const slice = createSlice({
           break;
         // if the amount is negative, set error to NEGATIVE_ETH_ERROR
         // TODO: change this to NEGATIVE_ERROR and remove the currency bias.
-        case conversionGreaterThan(
-          { value: 0, fromNumericBase: 'dec' },
-          { value: draftTransaction.amount.value, fromNumericBase: 'hex' },
-        ):
+        case amountValue.isNegative():
           draftTransaction.amount.error = NEGATIVE_ETH_ERROR;
           break;
         // If none of the above are true, set error to null
@@ -1732,13 +1715,7 @@ export function editExistingTransaction(assetType, transactionId) {
       const address = getTokenAddressParam(tokenData);
       const nickname = getAddressBookEntryOrAccountName(state, address) ?? '';
 
-      const tokenAmountInHex = addHexPrefix(
-        conversionUtil(tokenAmountInDec, {
-          fromNumericBase: 'dec',
-          toNumericBase: 'hex',
-        }),
-      );
-
+      const tokenAmountInHex = addHexPrefix(decimalToHex(tokenAmountInDec));
       await dispatch(
         actions.addNewDraft({
           ...draftTransactionInitialState,
@@ -1938,14 +1915,13 @@ export function updateSendAmount(amount) {
         10,
         Number(draftTransaction.asset.details?.decimals || 0),
       );
-      const decimalValueString = conversionUtil(addHexPrefix(amount), {
-        fromNumericBase: 'hex',
-        toNumericBase: 'dec',
-        toCurrency: draftTransaction.asset.details?.symbol,
-        conversionRate: multiplier,
-        invertConversionRate: true,
-      });
-
+      const decimalValueString = new Numeric(addHexPrefix(amount), 16)
+        .toBase(10)
+        .applyConversionRate(
+          draftTransaction.asset.details?.symbol ? multiplier : 1,
+          true,
+        )
+        .toString();
       logAmount = `${Number(decimalValueString) ? decimalValueString : ''} ${
         draftTransaction.asset.details?.symbol
       }`;

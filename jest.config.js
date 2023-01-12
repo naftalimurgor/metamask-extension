@@ -42,7 +42,7 @@ module.exports = {
     '<rootDir>/app/scripts/lib/createRPCMethodTrackingMiddleware.test.js',
     '<rootDir>/app/scripts/migrations/*.test.js',
     '<rootDir>/app/scripts/platforms/*.test.js',
-    '<rootDir>/shared/**/*.test.js',
+    '<rootDir>/shared/**/*.test.(js|ts)',
     '<rootDir>/ui/**/*.test.js',
   ],
   testTimeout: 2500,

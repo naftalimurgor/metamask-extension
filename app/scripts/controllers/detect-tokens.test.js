@@ -11,7 +11,7 @@ import {
 } from '@metamask/assets-controllers';
 import { NETWORK_TYPES } from '../../../shared/constants/network';
 import { toChecksumHexAddress } from '../../../shared/modules/hexstring-utils';
-import { hexToDecimal } from '../../../shared/lib/metamask-controller-utils';
+import { hexToDecimal } from '../../../shared/modules/conversion.utils';
 import DetectTokensController from './detect-tokens';
 import NetworkController, { NETWORK_EVENTS } from './network';
 import PreferencesController from './preferences';

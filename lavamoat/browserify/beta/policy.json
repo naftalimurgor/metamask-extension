@@ -602,7 +602,7 @@
       },
       "packages": {
         "@metamask/eth-json-rpc-infura>eth-json-rpc-middleware": true,
-        "eth-block-tracker>@metamask/utils": true,
+        "@metamask/utils": true,
         "eth-rpc-errors": true,
         "json-rpc-engine": true,
         "node-fetch": true
@@ -959,7 +959,7 @@
       "packages": {
         "@metamask/rpc-methods>@metamask/key-tree": true,
         "@metamask/snaps-utils>@noble/hashes": true,
-        "eth-block-tracker>@metamask/utils": true
+        "@metamask/utils": true
       }
     },
     "@metamask/rpc-methods>@metamask/browser-passworder": {
@@ -983,7 +983,7 @@
         "@metamask/rpc-methods>@metamask/key-tree>@scure/bip39": true,
         "@metamask/snaps-utils>@noble/hashes": true,
         "@metamask/snaps-utils>@scure/base": true,
-        "eth-block-tracker>@metamask/utils": true
+        "@metamask/utils": true
       }
     },
     "@metamask/rpc-methods>@metamask/key-tree>@noble/ed25519": {
@@ -1065,6 +1065,18 @@
     "@metamask/subject-metadata-controller": {
       "packages": {
         "@metamask/base-controller": true
+      }
+    },
+    "@metamask/utils": {
+      "globals": {
+        "TextDecoder": true,
+        "TextEncoder": true
+      },
+      "packages": {
+        "@metamask/utils>superstruct": true,
+        "browserify>buffer": true,
+        "nock>debug": true,
+        "semver": true
       }
     },
     "@ngraveio/bc-ur": {
@@ -2129,21 +2141,10 @@
         "setTimeout": true
       },
       "packages": {
-        "eth-block-tracker>@metamask/utils": true,
+        "@metamask/utils": true,
         "eth-block-tracker>pify": true,
         "eth-query>json-rpc-random-id": true,
         "json-rpc-engine>@metamask/safe-event-emitter": true
-      }
-    },
-    "eth-block-tracker>@metamask/utils": {
-      "globals": {
-        "TextDecoder": true,
-        "TextEncoder": true
-      },
-      "packages": {
-        "@metamask/snaps-ui>superstruct": true,
-        "browserify>buffer": true,
-        "nock>debug": true
       }
     },
     "eth-ens-namehash": {
@@ -2198,8 +2199,8 @@
         "setTimeout": true
       },
       "packages": {
+        "@metamask/utils": true,
         "browserify>browser-resolve": true,
-        "eth-block-tracker>@metamask/utils": true,
         "eth-json-rpc-middleware>@metamask/eth-sig-util": true,
         "eth-json-rpc-middleware>pify": true,
         "eth-rpc-errors": true,
@@ -4109,6 +4110,20 @@
         "webpack>events": true
       }
     },
+    "semver": {
+      "globals": {
+        "console.error": true
+      },
+      "packages": {
+        "browserify>process": true,
+        "semver>lru-cache": true
+      }
+    },
+    "semver>lru-cache": {
+      "packages": {
+        "semver>lru-cache>yallist": true
+      }
+    },
     "sinon>nise>path-to-regexp": {
       "packages": {
         "sinon>nise>path-to-regexp>isarray": true
@@ -4137,17 +4152,6 @@
         "enzyme>function.prototype.name>functions-have-names": true,
         "globalthis>define-properties": true,
         "string.prototype.matchall>call-bind": true
-      }
-    },
-    "textarea-caret": {
-      "globals": {
-        "document.body.appendChild": true,
-        "document.body.removeChild": true,
-        "document.createElement": true,
-        "document.querySelector": true,
-        "getCaretCoordinates": "write",
-        "getComputedStyle": true,
-        "mozInnerScreenX": true
       }
     },
     "uuid": {

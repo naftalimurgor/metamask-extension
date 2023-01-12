@@ -12,7 +12,6 @@ import { merge, pickBy } from 'lodash';
 import cleanErrorStack from '../../lib/cleanErrorStack';
 import {
   hexToBn,
-  bnToHex,
   BnMultiplyByFraction,
   addHexPrefix,
   getChainType,
@@ -33,7 +32,12 @@ import {
   CUSTOM_GAS_ESTIMATE,
   PRIORITY_LEVELS,
 } from '../../../../shared/constants/gas';
-import { decGWEIToHexWEI } from '../../../../shared/modules/conversion.utils';
+import {
+  bnToHex,
+  decGWEIToHexWEI,
+  hexWEIToDecETH,
+  hexWEIToDecGWEI,
+} from '../../../../shared/modules/conversion.utils';
 import { isSwapsDefaultTokenAddress } from '../../../../shared/modules/swaps.utils';
 import { EVENT } from '../../../../shared/constants/metametrics';
 import {
@@ -50,12 +54,10 @@ import {
 import { ORIGIN_METAMASK } from '../../../../shared/constants/app';
 import {
   calcGasTotal,
-  decimalToHex,
   getSwapsTokensReceivedFromTxMeta,
-  hexWEIToDecETH,
-  hexWEIToDecGWEI,
   TRANSACTION_ENVELOPE_TYPE_NAMES,
 } from '../../../../shared/lib/transactions-controller-utils';
+import { Numeric } from '../../../../shared/modules/Numeric';
 import TransactionStateManager from './tx-state-manager';
 import TxGasUtil from './tx-gas-utils';
 import PendingTransactionTracker from './pending-tx-tracker';
@@ -1448,7 +1450,7 @@ export default class TransactionController extends EventEmitter {
       ...normalizedTxParams,
       type,
       gasLimit: normalizedTxParams.gas,
-      chainId: addHexPrefix(decimalToHex(chainId)),
+      chainId: new Numeric(chainId, 10).toPrefixedHexString(),
     };
     // sign tx
     const fromAddress = txParams.from;
