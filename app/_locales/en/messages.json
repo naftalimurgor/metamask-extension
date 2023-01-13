@@ -3336,9 +3336,6 @@
   "signatureRequest": {
     "message": "Signature request"
   },
-  "signatureRequest1": {
-    "message": "Message"
-  },
   "signatureRequestGuidance": {
     "message": "Only sign this message if you fully understand the content and trust the requesting site."
   },

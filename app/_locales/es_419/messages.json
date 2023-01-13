@@ -2321,9 +2321,6 @@
   "signatureRequest": {
     "message": "Solicitud de firma"
   },
-  "signatureRequest1": {
-    "message": "Mensaje"
-  },
   "signed": {
     "message": "Firmado"
   },

@@ -2321,9 +2321,6 @@
   "signatureRequest": {
     "message": "Solicitação de assinatura"
   },
-  "signatureRequest1": {
-    "message": "Mensagem"
-  },
   "signed": {
     "message": "Assinado"
   },
