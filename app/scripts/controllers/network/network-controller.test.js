@@ -1,8 +1,11 @@
+import { promisify } from 'util';
 import nock from 'nock';
 import { deferredPromise } from '../../lib/util';
 import {
+  CHAIN_IDS,
   NETWORK_TO_NAME_MAP,
   NETWORK_TYPES,
+  TEST_NETWORK_TICKER_MAP,
 } from '../../../../shared/constants/network';
 import NetworkController, { NETWORK_EVENTS } from './network-controller';
 
@@ -118,6 +121,92 @@ describe('NetworkController', () => {
       nock.cleanAll();
     });
 
+    describe('constructor', () => {
+      const invalidInfuraIds = [undefined, null, {}, 1];
+
+      for (const invalidId of invalidInfuraIds) {
+        it(`should throw if an invalid Infura ID of '${invalidId}' is provided`, () => {
+          expect(() => new NetworkController({ infuraId: invalidId })).toThrow(
+            'Invalid Infura project ID',
+          );
+        });
+      }
+
+      it('should accept initial state', async () => {
+        const exampleInitialState = {
+          provider: {
+            type: NETWORK_TYPES.RPC,
+            rpcUrl: 'http://example-custom-rpc.metamask.io',
+            chainId: '0x9999',
+            nickname: 'Test initial state',
+          },
+          networkDetails: {
+            EIPS: {
+              1559: false,
+            },
+          },
+        };
+        await withController(
+          { state: exampleInitialState },
+          async ({ controller }) => {
+            expect(controller.store.getState()).toMatchInlineSnapshot(`
+              {
+                "network": "loading",
+                "networkDetails": {
+                  "EIPS": {
+                    "1559": false,
+                  },
+                },
+                "previousProviderStore": {
+                  "chainId": "0x9999",
+                  "nickname": "Test initial state",
+                  "rpcUrl": "http://example-custom-rpc.metamask.io",
+                  "type": "rpc",
+                },
+                "provider": {
+                  "chainId": "0x9999",
+                  "nickname": "Test initial state",
+                  "rpcUrl": "http://example-custom-rpc.metamask.io",
+                  "type": "rpc",
+                },
+              }
+            `);
+          },
+        );
+      });
+
+      it('should set default state', async () => {
+        await withController(async ({ controller }) => {
+          expect(controller.store.getState()).toMatchInlineSnapshot(`
+            {
+              "network": "loading",
+              "networkDetails": {
+                "EIPS": {
+                  "1559": undefined,
+                },
+              },
+              "previousProviderStore": {
+                "chainId": "0x539",
+                "nickname": "Localhost 8545",
+                "rpcUrl": "http://localhost:8545",
+                "ticker": "ETH",
+                "type": "rpc",
+              },
+              "provider": {
+                "chainId": "0x539",
+                "nickname": "Localhost 8545",
+                "rpcUrl": "http://localhost:8545",
+                "ticker": "ETH",
+                "type": "rpc",
+              },
+            }
+          `);
+        });
+      });
+
+      // TODO: Test that the effects of `lookupNetwork` occur after `NETWORK_DID_CHANGE` occurs.
+    });
+
     describe('#provider', () => {
       it('provider should be updatable without reassignment', async () => {
         await withController(async ({ controller }) => {
@@ -158,42 +247,97 @@ describe('NetworkController', () => {
       });
     });
 
-    describe('#getNetworkState', () => {
-      it('should return "loading" when uninitialized', async () => {
-        await withController(async ({ controller }) => {
-          const networkState = controller.getNetworkState();
-          expect(networkState).toStrictEqual('loading');
-        });
+    describe('initializeProvider', () => {
+      it('should throw if the provider configuration is invalid', async () => {
+        const invalidProviderConfig = {};
+        await withController(
+          { state: { provider: invalidProviderConfig } },
+          async ({ controller }) => {
+            await expect(async () => {
+              setupMockRpcBlockResponses();
+              await controller.initializeProvider();
+            }).rejects.toThrow(
+              'NetworkController - _configureProvider - unknown type "undefined"',
+            );
+          },
+        );
       });
+
+      it('should configure the provider for Infura', async () => {
+        setupMockRpcBlockResponses({ networkType: NETWORK_TYPES.GOERLI });
+        const infuraProviderConfig = {
+          type: NETWORK_TYPES.GOERLI,
+          chainId: CHAIN_IDS.GOERLI,
+          ticker: TEST_NETWORK_TICKER_MAP.GOERLI,
+        };
+        await withController(
+          { state: { provider: infuraProviderConfig } },
+          async ({ controller }) => {
+            setupMockRpcBlockResponses();
+            expect(controller.getProviderAndBlockTracker().provider).toBeNull();
+            expect(
+              controller.getProviderAndBlockTracker().blockTracker,
+            ).toBeNull();
+
+            await controller.initializeProvider();
+
+            const { provider } = controller.getProviderAndBlockTracker();
+            const promisifiedSendAsync = promisify(provider.sendAsync).bind(
+              provider,
+            );
+            const chainIdResult = await promisifiedSendAsync({
+              method: 'eth_chainId',
+            });
+            expect(chainIdResult.result).toBe(CHAIN_IDS.GOERLI);
+          },
+        );
+      });
+
+      it('should configure the provider for a custom RPC endpoint', async () => {
+        const infuraProviderConfig = {
+          type: NETWORK_TYPES.RPC,
+          chainId: CHAIN_IDS.GOERLI,
+          rpcUrl: 'http://localhost:8545',
+          ticker: TEST_NETWORK_TICKER_MAP.GOERLI,
+        };
+        await withController(
+          { state: { provider: infuraProviderConfig } },
+          async ({ controller }) => {
+            setupMockRpcBlockResponses();
+            expect(controller.getProviderAndBlockTracker().provider).toBeNull();
+            expect(
+              controller.getProviderAndBlockTracker().blockTracker,
+            ).toBeNull();
+
+            await controller.initializeProvider();
+
+            const { provider } = controller.getProviderAndBlockTracker();
+            const promisifiedSendAsync = promisify(provider.sendAsync).bind(
+              provider,
+            );
+            const chainIdResult = await promisifiedSendAsync({
+              method: 'eth_chainId',
+            });
+            expect(chainIdResult.result).toBe(CHAIN_IDS.GOERLI);
+          },
+        );
+      });
+
+      // TODO: Add tests to cover effects of calling `lookupNetwork`
     });
 
-    describe('#setProviderType', () => {
-      it('should update provider.type', async () => {
+    describe('getProviderAndBlockTracker', () => {
+      it('should return nulls if unset', async () => {
         await withController(async ({ controller }) => {
-          setupMockRpcBlockResponses();
-          setupMockRpcBlockResponses({ networkType: NETWORK_TYPES.MAINNET });
-          await controller.initializeProvider();
-          controller.setProviderType('mainnet');
-          const { type } = controller.getProviderConfig();
-          expect(type).toStrictEqual('mainnet');
+          const { provider, blockTracker } =
+            controller.getProviderAndBlockTracker();
+
+          expect(provider).toBeNull();
+          expect(blockTracker).toBeNull();
         });
       });
 
-      it('should set the network to loading', async () => {
-        await withController(async ({ controller }) => {
-          setupMockRpcBlockResponses();
-          setupMockRpcBlockResponses({ networkType: NETWORK_TYPES.MAINNET });
-          await controller.initializeProvider();
-
-          controller.setProviderType('mainnet');
-          const { promise: networkIdChanged, resolve } = deferredPromise();
-          controller.networkStore.subscribe(resolve);
-
-          expect(controller.networkStore.getState()).toBe('loading');
-          await networkIdChanged;
-          expect(controller.networkStore.getState()).toBe('1');
-        });
-      });
+      // TODO: Add tests for provider and block tracker under three conditions: network configured, during switch, after switch.
     });
 
     describe('#getEIP1559Compatibility', () => {
@@ -250,6 +394,40 @@ describe('NetworkController', () => {
           expect(controller.networkDetails.getState().EIPS[1559]).toStrictEqual(
             false,
           );
+        });
+      });
+    });
+
+    describe('#getNetworkState', () => {
+      it('should return "loading" when uninitialized', async () => {
+        await withController(async ({ controller }) => {
+          const networkState = controller.getNetworkState();
+          expect(networkState).toStrictEqual('loading');
+        });
+      });
+    });
+
+    describe('#setProviderType', () => {
+      it('should update provider.type', async () => {
+        await withController(async ({ controller }) => {
+          await controller.initializeProvider();
+          controller.setProviderType('mainnet');
+          const { type } = controller.getProviderConfig();
+          expect(type).toStrictEqual('mainnet');
+        });
+      });
+
+      it('should set the network to loading', async () => {
+        await withController(async ({ controller }) => {
+          await controller.initializeProvider();
+
+          controller.setProviderType('mainnet');
+          const { promise: networkIdChanged, resolve } = deferredPromise();
+          controller.networkStore.subscribe(resolve);
+
+          expect(controller.networkStore.getState()).toBe('loading');
+          await networkIdChanged;
+          expect(controller.networkStore.getState()).toBe('1');
         });
       });
     });
