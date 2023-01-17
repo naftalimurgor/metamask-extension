@@ -14665,7 +14665,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-json-rpc-filters@npm:^5.0.0":
+"eth-json-rpc-filters@npm:^5.0.0, eth-json-rpc-filters@npm:^5.1.0":
   version: 5.1.0
   resolution: "eth-json-rpc-filters@npm:5.1.0"
   dependencies:
@@ -22899,7 +22899,7 @@ __metadata:
     eslint-plugin-storybook: ^0.6.4
     eth-block-tracker: ^6.0.0
     eth-ens-namehash: ^2.0.8
-    eth-json-rpc-filters: ^5.0.0
+    eth-json-rpc-filters: ^5.1.0
     eth-json-rpc-middleware: ^9.0.1
     eth-keyring-controller: ^8.1.0
     eth-lattice-keyring: ^0.12.3
