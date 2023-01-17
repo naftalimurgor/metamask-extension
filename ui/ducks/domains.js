@@ -148,12 +148,12 @@ export function initializeDomainSlice() {
     const ensAddress = networkMap[network];
     const networkIsSupported = Boolean(ensAddress);
     if (networkIsSupported) {
-      provider = new Web3Provider(global.ethereumProvider, {
+      web3Provider = new Web3Provider(global.ethereumProvider, {
         chainId: parseInt(network, 10),
         name: networkName,
         ensAddress,
       });
-      dispatch(enableEnsLookup(network));
+      dispatch(enableDomainLookup(network));
     } else {
       web3Provider = null;
       dispatch(disableDomainLookup());

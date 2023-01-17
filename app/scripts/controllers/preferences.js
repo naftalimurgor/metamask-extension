@@ -1,7 +1,7 @@
 import { ObservableStore } from '@metamask/obs-store';
 import { normalize as normalizeAddress } from 'eth-sig-util';
-import { IPFS_DEFAULT_GATEWAY_URL } from '../../../shared/constants/network';
 import { Web3Provider } from '@ethersproject/providers';
+import { IPFS_DEFAULT_GATEWAY_URL } from '../../../shared/constants/network';
 import { isPrefixedFormattedHexString } from '../../../shared/modules/network.utils';
 import { LEDGER_TRANSPORT_TYPES } from '../../../shared/constants/hardware-wallets';
 import { THEME_TYPE } from '../../../ui/pages/settings/settings-tab/settings-tab.constant';

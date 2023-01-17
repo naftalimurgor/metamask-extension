@@ -83,7 +83,6 @@ export default class AccountTracker {
     this.preferencesController = opts.preferencesController;
     this.onboardingController = opts.onboardingController;
 
-
     this.onboardingController.store.subscribe(
       previousValueComparator(async (prevState, currState) => {
         const { completedOnboarding: prevCompletedOnboarding } = prevState;
