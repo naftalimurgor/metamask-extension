@@ -41,19 +41,24 @@ function isDecimalHex(value: string): boolean {
 
 /**
  * Converts a hexadecimal in string or number format to a BigNumber.
+ * Note that in many places in our codebase we call 'addHexPrefix' on a negated
+ * hexadecimal string resulting in '0x-a' which will fail checks for
+ * isHexString. Sometimes we DO not add the 0x so we have to check for '-a'
+ * as well.
  *
  * @param value - hexadecimal value in string or number format.
  * @returns A BigNumber representation of the value
  */
 function hexadecimalToBigNumber(value: string | number): BigNumber {
   const stringified = typeof value === 'number' ? `${value}` : value;
-  const isNegative = stringified[0] === '-';
+  const isNegative = stripHexPrefix(stringified)[0] === '-';
   const valueWithoutNegation = stringified.replace('-', '');
 
   const valueAsBigNumber = new BigNumber(
     stripHexPrefix(valueWithoutNegation),
     16,
   );
+
   return isNegative ? valueAsBigNumber.negated() : valueAsBigNumber;
 }
 
@@ -90,7 +95,11 @@ function stringToBigNumber(value: string, numericBase: NumericBase) {
     (isHexStringOrNegatedHexString(value) || isDecimalHex(value))
   ) {
     return hexadecimalToBigNumber(value);
-  } else if (numericBase === 10 && isFinite(parseInt(value, 10))) {
+  } else if (
+    numericBase === 10 &&
+    // check if we have a finite integer or float
+    (isFinite(parseInt(value, 10)) || isFinite(parseFloat(value)))
+  ) {
     return decimalToBigNumber(value);
   }
   throw new Error(
