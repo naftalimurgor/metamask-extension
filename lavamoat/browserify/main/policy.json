@@ -452,29 +452,13 @@
     },
     "@keystonehq/metamask-airgapped-keyring>@keystonehq/base-eth-keyring": {
       "packages": {
+        "@ethereumjs/tx": true,
         "@keystonehq/bc-ur-registry-eth": true,
         "@keystonehq/bc-ur-registry-eth>hdkey": true,
-        "@keystonehq/metamask-airgapped-keyring>@keystonehq/base-eth-keyring>@ethereumjs/tx": true,
         "@keystonehq/metamask-airgapped-keyring>@keystonehq/base-eth-keyring>rlp": true,
         "browserify>buffer": true,
         "eth-lattice-keyring>@ethereumjs/util": true,
         "uuid": true
-      }
-    },
-    "@keystonehq/metamask-airgapped-keyring>@keystonehq/base-eth-keyring>@ethereumjs/tx": {
-      "packages": {
-        "@keystonehq/metamask-airgapped-keyring>@keystonehq/base-eth-keyring>@ethereumjs/tx>@ethereumjs/common": true,
-        "browserify>buffer": true,
-        "browserify>insert-module-globals>is-buffer": true,
-        "ethereumjs-util": true
-      }
-    },
-    "@keystonehq/metamask-airgapped-keyring>@keystonehq/base-eth-keyring>@ethereumjs/tx>@ethereumjs/common": {
-      "packages": {
-        "@ethereumjs/common>crc-32": true,
-        "browserify>buffer": true,
-        "browserify>events": true,
-        "ethereumjs-util": true
       }
     },
     "@keystonehq/metamask-airgapped-keyring>@keystonehq/base-eth-keyring>rlp": {
@@ -803,18 +787,11 @@
         "setTimeout": true
       },
       "packages": {
-        "@metamask/eth-json-rpc-infura>@metamask/utils": true,
         "@metamask/eth-json-rpc-infura>eth-json-rpc-middleware": true,
+        "eth-block-tracker>@metamask/utils": true,
         "eth-rpc-errors": true,
         "json-rpc-engine": true,
         "node-fetch": true
-      }
-    },
-    "@metamask/eth-json-rpc-infura>@metamask/utils": {
-      "packages": {
-        "@metamask/eth-json-rpc-infura>@metamask/utils>superstruct": true,
-        "eslint>fast-deep-equal": true,
-        "nock>debug": true
       }
     },
     "@metamask/eth-json-rpc-infura>eth-json-rpc-middleware": {
@@ -1175,8 +1152,8 @@
     "@metamask/rpc-methods": {
       "packages": {
         "@metamask/rpc-methods>@metamask/key-tree": true,
-        "@metamask/snaps-ui>@metamask/utils": true,
-        "@metamask/snaps-utils>@noble/hashes": true
+        "@metamask/snaps-utils>@noble/hashes": true,
+        "eth-block-tracker>@metamask/utils": true
       }
     },
     "@metamask/rpc-methods>@metamask/browser-passworder": {
@@ -1197,10 +1174,10 @@
       "packages": {
         "@metamask/rpc-methods>@metamask/key-tree>@metamask/scure-bip39": true,
         "@metamask/rpc-methods>@metamask/key-tree>@noble/ed25519": true,
-        "@metamask/rpc-methods>@metamask/key-tree>@noble/hashes": true,
         "@metamask/rpc-methods>@metamask/key-tree>@noble/secp256k1": true,
-        "@metamask/rpc-methods>@metamask/key-tree>@scure/base": true,
-        "@metamask/snaps-ui>@metamask/utils": true
+        "@metamask/snaps-utils>@noble/hashes": true,
+        "@metamask/snaps-utils>@scure/base": true,
+        "eth-block-tracker>@metamask/utils": true
       }
     },
     "@metamask/rpc-methods>@metamask/key-tree>@metamask/scure-bip39": {
@@ -1220,25 +1197,12 @@
         "browserify>browser-resolve": true
       }
     },
-    "@metamask/rpc-methods>@metamask/key-tree>@noble/hashes": {
-      "globals": {
-        "TextEncoder": true,
-        "crypto": true,
-        "setTimeout": true
-      }
-    },
     "@metamask/rpc-methods>@metamask/key-tree>@noble/secp256k1": {
       "globals": {
         "crypto": true
       },
       "packages": {
         "browserify>browser-resolve": true
-      }
-    },
-    "@metamask/rpc-methods>@metamask/key-tree>@scure/base": {
-      "globals": {
-        "TextDecoder": true,
-        "TextEncoder": true
       }
     },
     "@metamask/rpc-methods>nanoid": {
@@ -1281,32 +1245,6 @@
     "@metamask/snaps-controllers>nanoid": {
       "globals": {
         "crypto.getRandomValues": true
-      }
-    },
-    "@metamask/snaps-ui>@metamask/utils": {
-      "globals": {
-        "TextDecoder": true,
-        "TextEncoder": true
-      },
-      "packages": {
-        "@metamask/snaps-ui>@metamask/utils>semver": true,
-        "@metamask/snaps-ui>@metamask/utils>superstruct": true,
-        "browserify>buffer": true,
-        "nock>debug": true
-      }
-    },
-    "@metamask/snaps-ui>@metamask/utils>semver": {
-      "globals": {
-        "console.error": true
-      },
-      "packages": {
-        "@metamask/snaps-ui>@metamask/utils>semver>lru-cache": true,
-        "browserify>process": true
-      }
-    },
-    "@metamask/snaps-ui>@metamask/utils>semver>lru-cache": {
-      "packages": {
-        "semver>lru-cache>yallist": true
       }
     },
     "@metamask/snaps-utils>@noble/hashes": {
@@ -1534,14 +1472,14 @@
         "@truffle/codec>big.js": true,
         "@truffle/codec>bn.js": true,
         "@truffle/codec>cbor": true,
+        "@truffle/codec>semver": true,
         "@truffle/codec>utf8": true,
         "@truffle/codec>web3-utils": true,
         "browserify>buffer": true,
         "browserify>os-browserify": true,
         "browserify>util": true,
         "lodash": true,
-        "nock>debug": true,
-        "semver": true
+        "nock>debug": true
       }
     },
     "@truffle/codec>@truffle/abi-utils": {
@@ -1734,6 +1672,20 @@
         "browserify>util": true
       }
     },
+    "@truffle/codec>semver": {
+      "globals": {
+        "console.error": true
+      },
+      "packages": {
+        "@truffle/codec>semver>lru-cache": true,
+        "browserify>process": true
+      }
+    },
+    "@truffle/codec>semver>lru-cache": {
+      "packages": {
+        "semver>lru-cache>yallist": true
+      }
+    },
     "@truffle/codec>web3-utils": {
       "globals": {
         "setTimeout": true
@@ -1839,8 +1791,8 @@
       "packages": {
         "@truffle/decoder>@truffle/encoder>@ensdomains/ensjs>content-hash>cids>class-is": true,
         "@truffle/decoder>@truffle/encoder>@ensdomains/ensjs>content-hash>cids>multibase": true,
-        "@truffle/decoder>@truffle/encoder>@ensdomains/ensjs>content-hash>cids>multicodec": true,
-        "@truffle/decoder>@truffle/encoder>@ensdomains/ensjs>content-hash>cids>multihashes": true,
+        "@truffle/decoder>@truffle/encoder>@ensdomains/ensjs>content-hash>multicodec": true,
+        "@truffle/decoder>@truffle/encoder>@ensdomains/ensjs>content-hash>multihashes": true,
         "browserify>buffer": true,
         "browserify>insert-module-globals>is-buffer": true
       }
@@ -1854,19 +1806,6 @@
     "@truffle/decoder>@truffle/encoder>@ensdomains/ensjs>content-hash>cids>multibase>base-x": {
       "packages": {
         "ethereumjs-wallet>safe-buffer": true
-      }
-    },
-    "@truffle/decoder>@truffle/encoder>@ensdomains/ensjs>content-hash>cids>multicodec": {
-      "packages": {
-        "@ensdomains/content-hash>multihashes>varint": true,
-        "browserify>buffer": true
-      }
-    },
-    "@truffle/decoder>@truffle/encoder>@ensdomains/ensjs>content-hash>cids>multihashes": {
-      "packages": {
-        "@ensdomains/content-hash>multihashes>varint": true,
-        "browserify>buffer": true,
-        "ethereumjs-wallet>bs58check>bs58": true
       }
     },
     "@truffle/decoder>@truffle/encoder>@ensdomains/ensjs>content-hash>multicodec": {
@@ -2478,10 +2417,15 @@
       }
     },
     "eth-block-tracker>@metamask/utils": {
+      "globals": {
+        "TextDecoder": true,
+        "TextEncoder": true
+      },
       "packages": {
-        "eslint>fast-deep-equal": true,
+        "browserify>buffer": true,
         "eth-block-tracker>@metamask/utils>superstruct": true,
-        "nock>debug": true
+        "nock>debug": true,
+        "semver": true
       }
     },
     "eth-ens-namehash": {
@@ -2536,8 +2480,8 @@
         "setTimeout": true
       },
       "packages": {
-        "@metamask/snaps-ui>@metamask/utils": true,
         "browserify>browser-resolve": true,
+        "eth-block-tracker>@metamask/utils": true,
         "eth-json-rpc-middleware>@metamask/eth-sig-util": true,
         "eth-json-rpc-middleware>pify": true,
         "eth-rpc-errors": true,
@@ -2679,14 +2623,22 @@
         "setInterval": true
       },
       "packages": {
-        "@ethereumjs/tx": true,
         "browserify>buffer": true,
         "browserify>crypto-browserify": true,
         "browserify>events": true,
+        "eth-lattice-keyring>@ethereumjs/tx": true,
         "eth-lattice-keyring>@ethereumjs/util": true,
         "eth-lattice-keyring>bn.js": true,
         "eth-lattice-keyring>gridplus-sdk": true,
         "eth-lattice-keyring>rlp": true
+      }
+    },
+    "eth-lattice-keyring>@ethereumjs/tx": {
+      "packages": {
+        "@ethereumjs/common": true,
+        "browserify>buffer": true,
+        "browserify>insert-module-globals>is-buffer": true,
+        "ethereumjs-util": true
       }
     },
     "eth-lattice-keyring>@ethereumjs/util": {
@@ -2766,13 +2718,13 @@
         "setTimeout": true
       },
       "packages": {
-        "@ethereumjs/common": true,
         "@ethereumjs/common>crc-32": true,
-        "@ethereumjs/tx": true,
         "@ethersproject/abi": true,
         "bn.js": true,
         "browserify>buffer": true,
         "browserify>process": true,
+        "eth-lattice-keyring>gridplus-sdk>@ethereumjs/common": true,
+        "eth-lattice-keyring>gridplus-sdk>@ethereumjs/tx": true,
         "eth-lattice-keyring>gridplus-sdk>bech32": true,
         "eth-lattice-keyring>gridplus-sdk>bignumber.js": true,
         "eth-lattice-keyring>gridplus-sdk>bitwise": true,
@@ -2787,6 +2739,30 @@
         "ethereumjs-wallet>bs58check": true,
         "ganache>secp256k1>elliptic": true,
         "lodash": true
+      }
+    },
+    "eth-lattice-keyring>gridplus-sdk>@ethereumjs/common": {
+      "packages": {
+        "@ethereumjs/common>crc-32": true,
+        "browserify>buffer": true,
+        "browserify>events": true,
+        "ethereumjs-util": true
+      }
+    },
+    "eth-lattice-keyring>gridplus-sdk>@ethereumjs/tx": {
+      "packages": {
+        "browserify>buffer": true,
+        "browserify>insert-module-globals>is-buffer": true,
+        "eth-lattice-keyring>gridplus-sdk>@ethereumjs/tx>@ethereumjs/common": true,
+        "ethereumjs-util": true
+      }
+    },
+    "eth-lattice-keyring>gridplus-sdk>@ethereumjs/tx>@ethereumjs/common": {
+      "packages": {
+        "@ethereumjs/common>crc-32": true,
+        "browserify>buffer": true,
+        "browserify>events": true,
+        "ethereumjs-util": true
       }
     },
     "eth-lattice-keyring>gridplus-sdk>bignumber.js": {
