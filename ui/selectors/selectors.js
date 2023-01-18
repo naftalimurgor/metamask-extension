@@ -1057,7 +1057,7 @@ export function getShowOutdatedBrowserWarning(state) {
     return true;
   }
   const currentTime = new Date().getTime();
-  return (currentTime - outdatedBrowserWarningLastShown) >= (DAY * 2);
+  return currentTime - outdatedBrowserWarningLastShown >= DAY * 2;
 }
 
 export function getShowPortfolioTooltip(state) {
