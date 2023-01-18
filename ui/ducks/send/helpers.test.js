@@ -69,7 +69,7 @@ describe('Send Slice Helpers', () => {
             details: {
               address: '0xToken',
               standard: TokenStandard.ERC721,
-              tokenId: ethers.BigNumber.from(15000).toString(),
+              tokenId: BigNumber.from(15000).toString(),
             },
           },
           recipient: {
