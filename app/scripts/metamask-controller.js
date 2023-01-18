@@ -164,10 +164,6 @@ import {
   ///: END:ONLY_INCLUDE_IN
 } from './controllers/permissions';
 import createRPCMethodTrackingMiddleware from './lib/createRPCMethodTrackingMiddleware';
-///: BEGIN:ONLY_INCLUDE_IN(flask)
-import { checkSnapsBlockList } from './flask/snaps-utilities';
-import { SNAP_BLOCKLIST } from './flask/snaps-blocklist';
-///: END:ONLY_INCLUDE_IN
 
 export const METAMASK_CONTROLLER_EVENTS = {
   // Fired after state changes that impact the extension badge (unapproved msg count)
@@ -753,15 +749,15 @@ export default class MetamaskController extends EventEmitter {
       ],
     });
 
+    const isMain = process.env.METAMASK_BUILD_TYPE === 'main';
+    const isFlask = process.env.METAMASK_BUILD_TYPE === 'flask';
+
     this.snapController = new SnapController({
       environmentEndowmentPermissions: Object.values(EndowmentPermissions),
       closeAllConnections: this.removeAllConnections.bind(this),
-      checkBlockList: async (snapsToCheck) => {
-        return checkSnapsBlockList(snapsToCheck, SNAP_BLOCKLIST);
-      },
       state: initState.SnapController,
       messenger: snapControllerMessenger,
-      featureFlags: { dappsCanUpdateSnaps: true },
+      featureFlags: { dappsCanUpdateSnaps: true, allowLocalSnaps: isFlask, requireAllowlist: isMain },
     });
 
     this.notificationController = new NotificationController({
@@ -1417,10 +1413,10 @@ export default class MetamaskController extends EventEmitter {
           params:
             newAccounts.length < 2
               ? // If the length is 1 or 0, the accounts are sorted by definition.
-                newAccounts
+              newAccounts
               : // If the length is 2 or greater, we have to execute
-                // `eth_accounts` vi this method.
-                await this.getPermittedAccounts(origin),
+              // `eth_accounts` vi this method.
+              await this.getPermittedAccounts(origin),
         });
       }
 
@@ -2341,7 +2337,7 @@ export default class MetamaskController extends EventEmitter {
     const isTokenDetectionInactiveInMainnet =
       !useTokenDetection &&
       this.networkController.store.getState().provider.chainId ===
-        CHAIN_IDS.MAINNET;
+      CHAIN_IDS.MAINNET;
     const { tokenList } = this.tokenListController.state;
     const caseInSensitiveTokenList = isTokenDetectionInactiveInMainnet
       ? STATIC_MAINNET_TOKEN_LIST
@@ -2725,9 +2721,8 @@ export default class MetamaskController extends EventEmitter {
    */
 
   getAccountLabel(name, index, hdPathDescription) {
-    return `${name[0].toUpperCase()}${name.slice(1)} ${
-      parseInt(index, 10) + 1
-    } ${hdPathDescription || ''}`.trim();
+    return `${name[0].toUpperCase()}${name.slice(1)} ${parseInt(index, 10) + 1
+      } ${hdPathDescription || ''}`.trim();
   }
 
   /**
