@@ -229,7 +229,7 @@
       "packages": {
         "@ngraveio/bc-ur": true,
         "browserify>buffer": true,
-        "enzyme>cheerio>tslib": true,
+        "concurrently>rxjs>tslib": true,
         "ethereumjs-wallet>bs58check": true
       }
     },
@@ -738,8 +738,8 @@
       "packages": {
         "@metamask/eth-token-tracker>deep-equal>is-arguments": true,
         "@metamask/eth-token-tracker>deep-equal>is-date-object": true,
-        "enzyme>is-regex": true,
-        "enzyme>object-is": true,
+        "@ngraveio/bc-ur>assert>object-is": true,
+        "@storybook/api>telejson>is-regex": true,
         "mocha>object.assign>object-keys": true,
         "string.prototype.matchall>regexp.prototype.flags": true
       }
@@ -1399,6 +1399,12 @@
         "pubnub>cbor-sync": true
       }
     },
+    "@ngraveio/bc-ur>assert>object-is": {
+      "packages": {
+        "globalthis>define-properties": true,
+        "string.prototype.matchall>call-bind": true
+      }
+    },
     "@ngraveio/bc-ur>bignumber.js": {
       "globals": {
         "crypto": true,
@@ -1579,6 +1585,12 @@
     "@storybook/api>regenerator-runtime": {
       "globals": {
         "regeneratorRuntime": "write"
+      }
+    },
+    "@storybook/api>telejson>is-regex": {
+      "packages": {
+        "koa>is-generator-function>has-tostringtag": true,
+        "string.prototype.matchall>call-bind": true
       }
     },
     "@storybook/api>util-deprecate": {
@@ -2253,6 +2265,11 @@
         "console": true
       }
     },
+    "browserify>has": {
+      "packages": {
+        "mocha>object.assign>function-bind": true
+      }
+    },
     "browserify>os-browserify": {
       "globals": {
         "location": true,
@@ -2326,6 +2343,11 @@
     "classnames": {
       "globals": {
         "classNames": "write",
+        "define": true
+      }
+    },
+    "concurrently>rxjs>tslib": {
+      "globals": {
         "define": true
       }
     },
@@ -2410,28 +2432,6 @@
         "pump>once": true
       }
     },
-    "enzyme>cheerio>tslib": {
-      "globals": {
-        "define": true
-      }
-    },
-    "enzyme>has": {
-      "packages": {
-        "mocha>object.assign>function-bind": true
-      }
-    },
-    "enzyme>is-regex": {
-      "packages": {
-        "koa>is-generator-function>has-tostringtag": true,
-        "string.prototype.matchall>call-bind": true
-      }
-    },
-    "enzyme>object-is": {
-      "packages": {
-        "globalthis>define-properties": true,
-        "string.prototype.matchall>call-bind": true
-      }
-    },
     "eslint>optionator>fast-levenshtein": {
       "globals": {
         "Intl": true,
@@ -2506,7 +2506,7 @@
         "setTimeout": true
       },
       "packages": {
-        "enzyme>cheerio>tslib": true
+        "concurrently>rxjs>tslib": true
       }
     },
     "eth-json-rpc-middleware": {
@@ -4593,16 +4593,16 @@
         "WeakRef": true
       },
       "packages": {
-        "enzyme>has": true,
+        "browserify>has": true,
         "mocha>object.assign>function-bind": true,
         "string.prototype.matchall>has-symbols": true
       }
     },
     "string.prototype.matchall>regexp.prototype.flags": {
       "packages": {
-        "enzyme>function.prototype.name>functions-have-names": true,
         "globalthis>define-properties": true,
-        "string.prototype.matchall>call-bind": true
+        "string.prototype.matchall>call-bind": true,
+        "string.prototype.matchall>regexp.prototype.flags>functions-have-names": true
       }
     },
     "terser>source-map-support>buffer-from": {
