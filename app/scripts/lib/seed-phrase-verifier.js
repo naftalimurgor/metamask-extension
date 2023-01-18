@@ -1,4 +1,4 @@
-import { KeyringController } from 'eth-keyring-controller';
+import { KeyringController } from '@metamask/eth-keyring-controller';
 import log from 'loglevel';
 
 import { KEYRING_TYPES } from '../../../shared/constants/keyrings';
