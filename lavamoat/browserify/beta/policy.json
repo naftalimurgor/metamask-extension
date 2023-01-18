@@ -978,12 +978,21 @@
     },
     "@metamask/rpc-methods>@metamask/key-tree": {
       "packages": {
+        "@metamask/rpc-methods>@metamask/key-tree>@metamask/scure-bip39": true,
         "@metamask/rpc-methods>@metamask/key-tree>@noble/ed25519": true,
         "@metamask/rpc-methods>@metamask/key-tree>@noble/secp256k1": true,
-        "@metamask/rpc-methods>@metamask/key-tree>@scure/bip39": true,
         "@metamask/snaps-utils>@noble/hashes": true,
         "@metamask/snaps-utils>@scure/base": true,
         "eth-block-tracker>@metamask/utils": true
+      }
+    },
+    "@metamask/rpc-methods>@metamask/key-tree>@metamask/scure-bip39": {
+      "globals": {
+        "TextEncoder": true
+      },
+      "packages": {
+        "@metamask/snaps-utils>@noble/hashes": true,
+        "@metamask/snaps-utils>@scure/base": true
       }
     },
     "@metamask/rpc-methods>@metamask/key-tree>@noble/ed25519": {
@@ -1000,12 +1009,6 @@
       },
       "packages": {
         "browserify>browser-resolve": true
-      }
-    },
-    "@metamask/rpc-methods>@metamask/key-tree>@scure/bip39": {
-      "packages": {
-        "@metamask/snaps-utils>@noble/hashes": true,
-        "@metamask/snaps-utils>@scure/base": true
       }
     },
     "@metamask/rpc-methods>nanoid": {
@@ -2143,7 +2146,8 @@
       "packages": {
         "@metamask/snaps-ui>superstruct": true,
         "browserify>buffer": true,
-        "nock>debug": true
+        "nock>debug": true,
+        "semver": true
       }
     },
     "eth-ens-namehash": {
@@ -4109,6 +4113,20 @@
         "webpack>events": true
       }
     },
+    "semver": {
+      "globals": {
+        "console.error": true
+      },
+      "packages": {
+        "browserify>process": true,
+        "semver>lru-cache": true
+      }
+    },
+    "semver>lru-cache": {
+      "packages": {
+        "semver>lru-cache>yallist": true
+      }
+    },
     "sinon>nise>path-to-regexp": {
       "packages": {
         "sinon>nise>path-to-regexp>isarray": true
@@ -4137,17 +4155,6 @@
         "enzyme>function.prototype.name>functions-have-names": true,
         "globalthis>define-properties": true,
         "string.prototype.matchall>call-bind": true
-      }
-    },
-    "textarea-caret": {
-      "globals": {
-        "document.body.appendChild": true,
-        "document.body.removeChild": true,
-        "document.createElement": true,
-        "document.querySelector": true,
-        "getCaretCoordinates": "write",
-        "getComputedStyle": true,
-        "mozInnerScreenX": true
       }
     },
     "uuid": {

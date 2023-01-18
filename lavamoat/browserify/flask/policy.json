@@ -971,19 +971,16 @@
       "globals": {
         "WorkerGlobalScope": true,
         "addEventListener": true,
+        "browser": true,
+        "chrome": true,
         "location.origin": true,
         "onmessage": "write",
         "postMessage": true,
         "removeEventListener": true
       },
       "packages": {
-        "@metamask/post-message-stream>@metamask/utils": true,
-        "@metamask/post-message-stream>readable-stream": true
-      }
-    },
-    "@metamask/post-message-stream>@metamask/utils": {
-      "packages": {
-        "eslint>fast-deep-equal": true
+        "@metamask/post-message-stream>readable-stream": true,
+        "eth-block-tracker>@metamask/utils": true
       }
     },
     "@metamask/post-message-stream>readable-stream": {
@@ -1073,12 +1070,21 @@
     },
     "@metamask/rpc-methods>@metamask/key-tree": {
       "packages": {
+        "@metamask/rpc-methods>@metamask/key-tree>@metamask/scure-bip39": true,
         "@metamask/rpc-methods>@metamask/key-tree>@noble/ed25519": true,
         "@metamask/rpc-methods>@metamask/key-tree>@noble/secp256k1": true,
-        "@metamask/rpc-methods>@metamask/key-tree>@scure/bip39": true,
         "@metamask/snaps-utils>@noble/hashes": true,
         "@metamask/snaps-utils>@scure/base": true,
         "eth-block-tracker>@metamask/utils": true
+      }
+    },
+    "@metamask/rpc-methods>@metamask/key-tree>@metamask/scure-bip39": {
+      "globals": {
+        "TextEncoder": true
+      },
+      "packages": {
+        "@metamask/snaps-utils>@noble/hashes": true,
+        "@metamask/snaps-utils>@scure/base": true
       }
     },
     "@metamask/rpc-methods>@metamask/key-tree>@noble/ed25519": {
@@ -1095,12 +1101,6 @@
       },
       "packages": {
         "browserify>browser-resolve": true
-      }
-    },
-    "@metamask/rpc-methods>@metamask/key-tree>@scure/bip39": {
-      "packages": {
-        "@metamask/snaps-utils>@noble/hashes": true,
-        "@metamask/snaps-utils>@scure/base": true
       }
     },
     "@metamask/rpc-methods>nanoid": {
@@ -1143,13 +1143,13 @@
     "@metamask/snaps-controllers": {
       "globals": {
         "URL": true,
+        "chrome.offscreen.createDocument": true,
+        "chrome.offscreen.hasDocument": true,
         "clearTimeout": true,
         "console.error": true,
         "console.info": true,
         "console.log": true,
         "console.warn": true,
-        "document.body.appendChild": true,
-        "document.createElement": true,
         "document.getElementById": true,
         "fetch.bind": true,
         "setTimeout": true
@@ -1340,7 +1340,9 @@
     "@metamask/snaps-utils": {
       "globals": {
         "TextDecoder": true,
-        "URL": true
+        "URL": true,
+        "document.body.appendChild": true,
+        "document.createElement": true
       },
       "packages": {
         "@metamask/snaps-ui>superstruct": true,
@@ -2468,7 +2470,8 @@
       "packages": {
         "@metamask/snaps-ui>superstruct": true,
         "browserify>buffer": true,
-        "nock>debug": true
+        "nock>debug": true,
+        "semver": true
       }
     },
     "eth-ens-namehash": {
@@ -4613,17 +4616,6 @@
     "terser>source-map-support>buffer-from": {
       "packages": {
         "browserify>buffer": true
-      }
-    },
-    "textarea-caret": {
-      "globals": {
-        "document.body.appendChild": true,
-        "document.body.removeChild": true,
-        "document.createElement": true,
-        "document.querySelector": true,
-        "getCaretCoordinates": "write",
-        "getComputedStyle": true,
-        "mozInnerScreenX": true
       }
     },
     "uuid": {
