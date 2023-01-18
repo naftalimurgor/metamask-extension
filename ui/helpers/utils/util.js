@@ -17,7 +17,7 @@ import {
   TRUNCATED_ADDRESS_END_CHARS,
 } from '../../../shared/constants/labels';
 import { toBigNumber } from '../../../shared/modules/conversion.utils';
-import { OUTDATED_BROWSER_VERSIONS } from '../constants/browser';
+import { OUTDATED_BROWSER_VERSIONS } from '../constants/common';
 // formatData :: ( date: <Unix Timestamp> ) -> String
 export function formatDate(date, format = "M/d/y 'at' T") {
   if (!date) {
@@ -329,7 +329,7 @@ export function getURL(url) {
   }
 }
 
-export function getOutdatedBrowserStatus(
+export function getIsBrowserDeprecated(
   browser = bowser.getParser(window.navigator.userAgent),
 ) {
   return browser.satisfies(OUTDATED_BROWSER_VERSIONS);
