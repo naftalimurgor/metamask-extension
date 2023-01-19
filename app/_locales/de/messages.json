@@ -2095,6 +2095,9 @@
   "mobileSyncWarning": {
     "message": "Die Funktion \"Mit Erweiterung synchronisieren\" ist vorübergehend deaktiviert. Wenn Sie Ihre Erweiterungs-Wallet auf MetaMask mobile verwenden möchten, dann gehen Sie in Ihrer mobilen App zurück zu den Einrichtungsoptionen für die Wallet und wählen Sie die Option \"Import mit Geheime Wiederherstellungsphrase\". Verwenden Sie die Geheime Wiederherstellungsphrase Ihrer Erweiterungs-Wallet, um Ihre Wallet in Mobile zu importieren."
   },
+  "moreComingSoon": {
+    "message": "Mehr in Kürze ..."
+  },
   "mustSelectOne": {
     "message": "Du musst mindestens 1 Token auswählen."
   },
@@ -2680,6 +2683,9 @@
   "openInBlockExplorer": {
     "message": "Im Block-Explorer öffnen"
   },
+  "openSea": {
+    "message": "OpenSea (Beta)"
+  },
   "optional": {
     "message": "Optional"
   },
@@ -3230,6 +3236,9 @@
   },
   "selectPathHelp": {
     "message": "Wenn Sie Ihre bestehenden Ledger-Konten nachfolgend nicht sehen, versuchen Sie, die Pfade zu \"Legacy (MEW / MyCrypto)\" zu ändern"
+  },
+  "selectProvider": {
+    "message": "Anbieter auswählen:"
   },
   "selectType": {
     "message": "Typ auswählen"
@@ -4075,6 +4084,9 @@
   },
   "thingsToKeep": {
     "message": "Was Sie beachten sollten:"
+  },
+  "thisServiceIsExperimental": {
+    "message": "Dieser Dienst ist experimentell"
   },
   "thisWillCreate": {
     "message": "Hierdurch werden ein neues Wallet und eine mnemonische Phrase erzeugt"

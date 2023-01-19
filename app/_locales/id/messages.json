@@ -682,6 +682,9 @@
   "close": {
     "message": "Tutup"
   },
+  "coingecko": {
+    "message": "CoinGecko"
+  },
   "collectibleAddFailedMessage": {
     "message": "NFT tidak dapat ditambahkan karena detail kepemilikan tidak cocok. Pastikan Anda telah memasukkan informasi yang benar."
   },
@@ -894,8 +897,18 @@
   "createPassword": {
     "message": "Buat kata sandi"
   },
+  "cryptoCompare": {
+    "message": "CryptoCompare"
+  },
   "currencyConversion": {
     "message": "Konversi mata uang"
+  },
+  "currencyRateCheckToggle": {
+    "message": "Tampilkan saldo dan pemeriksa harga token"
+  },
+  "currencyRateCheckToggleDescription": {
+    "message": "Kami menggunakan API $1 dan $2 untuk menampilkan harga token serta saldo Anda. $3",
+    "description": "$1 represents Coingecko, $2 represents CryptoCompare and $3 represents Privacy Policy"
   },
   "currencySymbol": {
     "message": "Simbol mata uang"
@@ -2063,6 +2076,9 @@
   "metametricsOptInDescription": {
     "message": "MetaMask ingin mengumpulkan data penggunaan untuk lebih memahami cara pengguna berinteraksi dengan ekstensi. Data ini akan digunakan untuk meningkatkan kegunaan dan pengalaman pengguna atas produk kami dan ekosistem Ethereum secara berkala."
   },
+  "metrics": {
+    "message": "Metrik"
+  },
   "mismatchedChainLinkText": {
     "message": "memverifikasi detail jaringan",
     "description": "Serves as link text for the 'mismatchedChain' key. This text will be embedded inside the translation for that key."
@@ -2094,6 +2110,9 @@
   },
   "mobileSyncWarning": {
     "message": "Fitur 'Sinkronkan dengan ekstensi' dinonaktifkan untuk sementara waktu. Jika Anda ingin menggunakan dompet ekstensi Anda di ponsel MetaMask, maka pada aplikasi seluler Anda: kembali ke opsi pengaturan dompet dan pilih opsi 'Impor dengan Frasa Pemulihan Rahasia'. Gunakan frasa rahasia dompet ekstensi Anda untuk mengimpor dompet Anda ke ponsel nantinya."
+  },
+  "moreComingSoon": {
+    "message": "Selanjutnya akan segera hadir..."
   },
   "mustSelectOne": {
     "message": "Harus memilih minimal 1 token."
@@ -2259,6 +2278,9 @@
   },
   "nft": {
     "message": "NFT"
+  },
+  "nftDisclaimer": {
+    "message": "Penafian: MetaMask menarik fail media dari url sumber. Url ini terkadang diubah oleh lokapasar tempat NFT dicetak."
   },
   "nftTokenIdPlaceholder": {
     "message": "Masukkan id token"
@@ -2679,6 +2701,9 @@
   },
   "openInBlockExplorer": {
     "message": "Buka di block explorer"
+  },
+  "openSea": {
+    "message": "OpenSea (Beta)"
   },
   "optional": {
     "message": "Opsional"
@@ -3230,6 +3255,9 @@
   },
   "selectPathHelp": {
     "message": "Jika Anda tidak menemukan akun yang diharapkan, coba alihkan jalur HD."
+  },
+  "selectProvider": {
+    "message": "Pilih penyedia:"
   },
   "selectType": {
     "message": "Pilih Jenis"
@@ -4075,6 +4103,9 @@
   },
   "thingsToKeep": {
     "message": "Hal-hal yang perlu diingat:"
+  },
+  "thisServiceIsExperimental": {
+    "message": "Layanan ini bersifat eksperimental"
   },
   "thisWillCreate": {
     "message": "Ini akan membuat Frasa Pemulihan Rahasia dan dompet baru"

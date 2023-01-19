@@ -2095,6 +2095,9 @@
   "mobileSyncWarning": {
     "message": "\"Uzantı ile senkronize et\" özelliği geçici olarak devre dışı bırakılmış. MetaMask mobilde uzantı cüzdanınızı kullanmak istiyorsanız mobil uygulamaya gidin: cüzdan kurulum ayarlarına geri dönün ve \"Gizli Kurtarma İfadesi ile İçe Aktar\" seçeneğini seçin. Ardından cüzdanınızı mobil uygulamada içe aktarmak için uzantı cüzdanınızın gizli ifadesini kullanın."
   },
+  "moreComingSoon": {
+    "message": "Daha fazlası çok yakında..."
+  },
   "mustSelectOne": {
     "message": "En az bir token seçilmeli."
   },
@@ -2680,6 +2683,9 @@
   "openInBlockExplorer": {
     "message": "Blok gezgininde aç"
   },
+  "openSea": {
+    "message": "OpenSea (Beta)"
+  },
   "optional": {
     "message": "İsteğe bağlı"
   },
@@ -3230,6 +3236,9 @@
   },
   "selectPathHelp": {
     "message": "Beklediğiniz hesapları görmüyorsanız HD yoluna geçmeyi deneyin."
+  },
+  "selectProvider": {
+    "message": "Sağlayıcıları seç:"
   },
   "selectType": {
     "message": "Tür Seç"
@@ -4075,6 +4084,9 @@
   },
   "thingsToKeep": {
     "message": "Unutulmaması gerekenler:"
+  },
+  "thisServiceIsExperimental": {
+    "message": "Bu hizmet deneyseldir"
   },
   "thisWillCreate": {
     "message": "Bu, yeni bir cüzdan ve Gizli Kurtarma İfadesi oluşturacaktır"

@@ -2095,6 +2095,9 @@
   "mobileSyncWarning": {
     "message": "'확장 프로그램과 동기화' 기능이 일시적으로 비활성화됩니다. MetaMask 모바일에서 확장 지갑을 사용하려면 모바일 앱에서 지갑 설정 옵션으로 돌아가 '비밀 복구 구문 가져오기' 옵션을 선택하세요. 확장 지갑의 비밀 구문을 사용하시면 지갑을 모바일로 가져올 수 있습니다."
   },
+  "moreComingSoon": {
+    "message": "더 추가 예정..."
+  },
   "mustSelectOne": {
     "message": "토큰을 1개 이상 선택해야 합니다."
   },
@@ -2680,6 +2683,9 @@
   "openInBlockExplorer": {
     "message": "블록 탐색기 열기"
   },
+  "openSea": {
+    "message": "OpenSea (베타)"
+  },
   "optional": {
     "message": "옵션"
   },
@@ -3230,6 +3236,9 @@
   },
   "selectPathHelp": {
     "message": "아래에 기존 Ledger 계정이 표시되지 않는다면 경로를 \"Legacy (MEW / MyCrypto)\"로 변경해 보세요."
+  },
+  "selectProvider": {
+    "message": "공급업체 선택"
   },
   "selectType": {
     "message": "유형 선택"
@@ -4075,6 +4084,9 @@
   },
   "thingsToKeep": {
     "message": "유의 사항:"
+  },
+  "thisServiceIsExperimental": {
+    "message": "이 서비스는 시험 서비스입니다"
   },
   "thisWillCreate": {
     "message": "이렇게 하면 새 지갑과 비밀 복구 구문이 만들어집니다"

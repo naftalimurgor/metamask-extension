@@ -2095,6 +2095,9 @@
   "mobileSyncWarning": {
     "message": "A funcionalidade \"Sincronizar com a extensão\" está temporariamente desativada. Se você quer usar sua carteira de extensão na MetaMask mobile, então, no seu app mobile: volte às opções de configuração da carteira e selecione a opção \"Importar com frase de recuperação secreta\". Use a frase secreta da sua carteira de extensão para, então, importar a sua carteira no celular."
   },
+  "moreComingSoon": {
+    "message": "Mais em breve..."
+  },
   "mustSelectOne": {
     "message": "Deve escolher no mínimo 1 token."
   },
@@ -2680,6 +2683,9 @@
   "openInBlockExplorer": {
     "message": "Abrir no explorador de blocos"
   },
+  "openSea": {
+    "message": "OpenSea (Beta)"
+  },
   "optional": {
     "message": "Opcional"
   },
@@ -3230,6 +3236,9 @@
   },
   "selectPathHelp": {
     "message": "Se você não vir as contas esperadas, tente trocar o caminho do HD."
+  },
+  "selectProvider": {
+    "message": "Selecione os provedores:"
   },
   "selectType": {
     "message": "Selecionar Tipo"
@@ -4075,6 +4084,9 @@
   },
   "thingsToKeep": {
     "message": "Informações importantes:"
+  },
+  "thisServiceIsExperimental": {
+    "message": "Esse serviço é experimental"
   },
   "thisWillCreate": {
     "message": "Isso criará uma nova carteira e Frase de Recuperação Secreta"

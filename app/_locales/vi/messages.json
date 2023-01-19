@@ -2095,6 +2095,9 @@
   "mobileSyncWarning": {
     "message": "Tính năng 'Đồng bộ với tiện ích' tạm thời bị tắt. Nếu bạn muốn sử dụng ví tiện ích trên thiết bị di động MetaMask, thì trên ứng dụng di động: hãy quay lại các tùy chọn thiết lập ví và chọn phương án 'Nhập bằng Cụm Mật Khẩu Khôi Phục Bí Mật'. Sử dụng cụm mật khẩu bí mật của ví tiện ích để nhập ví của bạn vào thiết bị di động."
   },
+  "moreComingSoon": {
+    "message": "Sắp có thêm..."
+  },
   "mustSelectOne": {
     "message": "Phải chọn ít nhất 1 token."
   },
@@ -2680,6 +2683,9 @@
   "openInBlockExplorer": {
     "message": "Mở trên trình khám phá khối"
   },
+  "openSea": {
+    "message": "OpenSea (Beta)"
+  },
   "optional": {
     "message": "Không bắt buộc"
   },
@@ -3230,6 +3236,9 @@
   },
   "selectPathHelp": {
     "message": "Nếu bạn không thấy các tài khoản như mong đợi, hãy chuyển sang đường dẫn HD."
+  },
+  "selectProvider": {
+    "message": "Chọn nhà cung cấp:"
   },
   "selectType": {
     "message": "Chọn loại"
@@ -4075,6 +4084,9 @@
   },
   "thingsToKeep": {
     "message": "Những điều cần lưu ý:"
+  },
+  "thisServiceIsExperimental": {
+    "message": "Đây là dịch vụ thử nghiệm"
   },
   "thisWillCreate": {
     "message": "Thao tác này sẽ tạo một ví mới và Cụm mật khẩu khôi phục bí mật"

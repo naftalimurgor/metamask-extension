@@ -682,6 +682,9 @@
   "close": {
     "message": "关闭"
   },
+  "coingecko": {
+    "message": "CoinGecko"
+  },
   "collectibleAddFailedMessage": {
     "message": "由于所有权信息不匹配，无法添加NFT。请确保所输入的信息正确无误。"
   },
@@ -894,8 +897,18 @@
   "createPassword": {
     "message": "创建密码"
   },
+  "cryptoCompare": {
+    "message": "CryptoCompare"
+  },
   "currencyConversion": {
     "message": "货币转换"
+  },
+  "currencyRateCheckToggle": {
+    "message": "显示余额和代币价格检查器"
+  },
+  "currencyRateCheckToggleDescription": {
+    "message": "我们使用$1和$2的API来显示您的余额和代币价格。$3",
+    "description": "$1 represents Coingecko, $2 represents CryptoCompare and $3 represents Privacy Policy"
   },
   "currencySymbol": {
     "message": "货币符号"
@@ -2063,6 +2076,9 @@
   "metametricsOptInDescription": {
     "message": "MetaMask 希望收集使用数据，以更好地了解我们的用户如何与扩展程序交互。这些数据将被用于持续改进我们产品和以太坊生态系统的可用性和用户体验。"
   },
+  "metrics": {
+    "message": "指标"
+  },
   "mismatchedChainLinkText": {
     "message": "验证网络信息",
     "description": "Serves as link text for the 'mismatchedChain' key. This text will be embedded inside the translation for that key."
@@ -2094,6 +2110,9 @@
   },
   "mobileSyncWarning": {
     "message": "“与扩展程序同步”功能暂时被禁用。如果您想要在 MetaMask 移动设备上使用您的扩展程序钱包，那么在您的移动应用程序上：返回钱包设置选项并选择“使用账户助记词导入”选项。使用您的扩展程序钱包的助记词来将您的钱包导入移动设备。"
+  },
+  "moreComingSoon": {
+    "message": "更多即将到来……"
   },
   "mustSelectOne": {
     "message": "至少选择1种代币。"
@@ -2259,6 +2278,9 @@
   },
   "nft": {
     "message": "非同质化代币(NFT)"
+  },
+  "nftDisclaimer": {
+    "message": "免责声明：MetaMask从源网址中提取媒体文件。这个网址有时会因NFT所在的市场而改变。"
   },
   "nftTokenIdPlaceholder": {
     "message": "输入代币ID"
@@ -2679,6 +2701,9 @@
   },
   "openInBlockExplorer": {
     "message": "在区块浏览器上打开"
+  },
+  "openSea": {
+    "message": "OpenSea（测试版）"
   },
   "optional": {
     "message": "可选"
@@ -3230,6 +3255,9 @@
   },
   "selectPathHelp": {
     "message": "如果您没有看到您期望的账户，请尝试切换 HD 路径。"
+  },
+  "selectProvider": {
+    "message": "选择提供程序："
   },
   "selectType": {
     "message": "选择类型"
@@ -4075,6 +4103,9 @@
   },
   "thingsToKeep": {
     "message": "注意事项:"
+  },
+  "thisServiceIsExperimental": {
+    "message": "此服务是实验性的"
   },
   "thisWillCreate": {
     "message": "这将创建新的钱包和账户助记词"

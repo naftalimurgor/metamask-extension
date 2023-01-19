@@ -2095,6 +2095,9 @@
   "mobileSyncWarning": {
     "message": "La fonction « Synchronisation avec l’extension » est temporairement désactivée. Si vous souhaitez utiliser votre portefeuille d’extension sur MetaMask mobile : sur votre application mobile, revenez aux options de configuration du portefeuille et sélectionnez l’option « Importation avec la phrase secrète de récupération ». Utilisez la phrase secrète de votre portefeuille d’extension pour importer celui-ci sur votre mobile."
   },
+  "moreComingSoon": {
+    "message": "D’autres à venir..."
+  },
   "mustSelectOne": {
     "message": "Vous devez sélectionner au moins 1 jeton."
   },
@@ -2680,6 +2683,9 @@
   "openInBlockExplorer": {
     "message": "Ouvrir dans l’explorateur de blocs"
   },
+  "openSea": {
+    "message": "OpenSea (Beta)"
+  },
   "optional": {
     "message": "Facultatif"
   },
@@ -3230,6 +3236,9 @@
   },
   "selectPathHelp": {
     "message": "Si vos comptes n’apparaissent pas ci-dessous, essayez de sélectionner le chemin HD."
+  },
+  "selectProvider": {
+    "message": "Sélectionner les fournisseurs :"
   },
   "selectType": {
     "message": "Sélectionner le type"
@@ -4075,6 +4084,9 @@
   },
   "thingsToKeep": {
     "message": "Les choses que vous devez garder à l’esprit :"
+  },
+  "thisServiceIsExperimental": {
+    "message": "Ce service est expérimental"
   },
   "thisWillCreate": {
     "message": "Cela créera un nouveau portefeuille et une nouvelle phrase mnémotechnique"

@@ -2095,6 +2095,9 @@
   "mobileSyncWarning": {
     "message": "「拡張機能と同期」機能は一時的に無効になっています。拡張ウォレットをMetaMaskモバイルで使用する場合は、モバイルアプリでウォレットの設定オプションに戻り、「シークレットリカバリーフレーズでインポート」オプションを選択します。拡張ウォレットのシークレットフレーズを使用して、ウォレットをモバイルにインポートします。"
   },
+  "moreComingSoon": {
+    "message": "さらに近日追加予定..."
+  },
   "mustSelectOne": {
     "message": "トークンを1つ以上選択する必要があります。"
   },
@@ -2680,6 +2683,9 @@
   "openInBlockExplorer": {
     "message": "ブロックエクスプローラーで開く"
   },
+  "openSea": {
+    "message": "OpenSea (ベータ)"
+  },
   "optional": {
     "message": "任意"
   },
@@ -3230,6 +3236,9 @@
   },
   "selectPathHelp": {
     "message": "アカウントが見当たらない場合は、HDパスを切り替えてみてください。"
+  },
+  "selectProvider": {
+    "message": "プロバイダーを選択してください:"
   },
   "selectType": {
     "message": "種類を選択"
@@ -4075,6 +4084,9 @@
   },
   "thingsToKeep": {
     "message": "留意点:"
+  },
+  "thisServiceIsExperimental": {
+    "message": "このサービスは実験段階です"
   },
   "thisWillCreate": {
     "message": "これにより、新しいウォレットとシークレットリカバリーフレーズが作成されます"
